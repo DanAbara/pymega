@@ -1,0 +1,8 @@
+- map all rotors normally like typical tricopter 
+- map servos 1 and 2 to pitch stick so that the same pitch stick controls both pitching motion (by changing rotor speed) and motion in x direction (by moving motors)
+- map servos 1 and 3 to a separate knob for positive y motion 
+- map servos 2 and 3 to a separate knob for negative y motion
+- include null mixer for any skipped/unused outputs
+
+note: it may also be (although unlikely) that all three servos have to be mapped for y motion even though the setup above maps only two and leaves the third for yaw control by the autopilot.
+On second thought, when the rotors are tilted sideways, there is less drag so the yawing moment may no longer be an issue.
