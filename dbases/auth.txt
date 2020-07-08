@@ -1,0 +1,10 @@
+OS
+user==postgres
+pass==ubuntu123
+
+Pgadmin
+masterpass==ubuntu123
+
+postgres DB
+db user==postgres
+pass==ubuntu123
