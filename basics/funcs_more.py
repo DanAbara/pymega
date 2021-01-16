@@ -2,15 +2,15 @@
 def area(a, b):
     return a * b # compute an area of sizes a x b
 
-print(area(4,5)) 
+print(area(4,5))
 
 # keyword and non-keyword arguments, default and non-default params
 print(area(b=5,a=4)) # this uses keyword arguments or non-positional arguments, position doesn't matter.
 
-# this next snippet uses non-keyword arguments or positional arguments. 
+# this next snippet uses non-keyword arguments or positional arguments.
 # Python assigns the inputs to the function based on their positions so position matters.
 # the first item 5 is assigned to a, and the second item 4 is assigned to b as per the function definition
-print(area(5,4)) 
+print(area(5,4))
 
 
 # functions with default (initialized) values. non-default values must be defined in a function before default values
@@ -29,7 +29,7 @@ print(circ(2)) # compute the area
 
 
 # functions with arbitrary number of non-keyword arguments just like the print() function
-def mean(*args): 
+def mean(*args):
     return sum(args) / len(args)
 
 print(mean(1,2,3,5))
