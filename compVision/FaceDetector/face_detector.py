@@ -15,7 +15,7 @@ print(face_coordinate)
 
 # draw a rectangle representing the coordinates on the image, x cord, y cord, w width, and h height
 for x,y,w,h in face_coordinate:
-    img=cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),3) # imageToUpdate, topLeftCoord, buttomRightCoord, BGRspecifier, rectangleThickness
+    img=cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),3) # imageToUpdate, topLeftCoord, buttomRightCoord, BGRspecifier, rectangleThickness/width
 
 # resize image
 
