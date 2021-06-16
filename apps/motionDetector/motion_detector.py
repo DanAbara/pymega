@@ -1,6 +1,11 @@
 import cv2, time
+from datetime import datetime
+import pandas as pd
 
-first_frame = None # none is a special keyword to allocate an empty variable. 
+first_frame = None # none is a special keyword to allocate an empty variable.
+status_list=[None,None] 
+times=[]
+df=pd.DataFrame(columns=["Start","End"])
 
 # start webcam, default is 0
 video=cv2.VideoCapture(0,cv2.CAP_DSHOW) 
@@ -9,6 +14,7 @@ while True:
     # obtain frames for video capture object, 'check' is bool to confirm video is working
     # frame is the first frame of the video, python cv2 reads videos as frames of separate images
     check, frame=video.read() 
+    status=0 
 
     # Convert to gray scale - 
     gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
@@ -35,12 +41,20 @@ while True:
 
     # Get only contours > a certain no of pixels eg. 1000. If less than 1000, check the next contour by running the next iteration of the for loop.
     for contour in cnts:
-        if cv2.contourArea(contour) < 1000:
+        if cv2.contourArea(contour) < 100000:
             continue
+
+        status=1
+
         (x,y,w,h)=cv2.boundingRect(contour) # if > 1000 create a rectangle with that countour
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0,255,0), 3)
     
-
+    status_list.append(status)
+    if status_list[-1]==1 and status_list[-2]==0:
+        times.append(datetime.now())
+    
+    if status_list[-1]==0 and status_list[-2]==1:
+        times.append(datetime.now())
 
     # Show a window
     cv2.imshow("Gray Frame", gray)
@@ -52,7 +66,18 @@ while True:
     
     # Break loop when key q is pressed
     if key==ord('q'): 
+        if status==1:
+            times.append(datetime.now())
         break
+
+    
+print(status_list)
+print(times)
+
+for t in range(0,len(times),2):
+    df=df.append({"Start":times[t], "End":times[t+1]},ignore_index=True)
+
+df.to_csv("Times.csv")
 
 video.release()
 cv2.destroyAllWindows
