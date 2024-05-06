@@ -2,6 +2,8 @@ import tkinter as tk
 
 # create a window
 window=tk.Tk()
+window.title('Kilometer to miles')
+
 
 def km_to_miles():
     print(e1_value.get())
@@ -18,5 +20,8 @@ e1.grid(row=0,column=1)
 
 t1=tk.Text(window,height=1,width=20)
 t1.grid(row=0,column=2)
+
+test_frame = tk.Frame(window)
+test_frame.grid(row=1,column=3, columnspan=10)
 
 window.mainloop() # to make sure the window stays open and an X button appears at the top-right corner. Without this line, the app will close immediately after opening.
